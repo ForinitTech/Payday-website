@@ -138,101 +138,150 @@ function convertToLocalTime(gmtTimeString) {
     hour12: true 
   });
 }
-function findNearestEvent(events) {
+function findNearestEvent(events, sportName) {
   const now = new Date();
   let nearestEvent = null;
   let minDiff = Infinity;
-  events.forEach(event => {
-    try {
-      const eventDate = new Date(event.DATE_TIME);
-      const timeDiff = eventDate - now;
 
-      if (timeDiff > 0 && timeDiff < minDiff) { 
-        minDiff = timeDiff;
-        nearestEvent = {
-          sportsName: event.SPORTS_NAME || "N/A",
-          matchName: event.MATCH_NAME || "N/A",
-          dateTime: convertToLocalTime(event.DATE_TIME)
-        };
+  events.forEach(event => {
+    if (event.SPORTS_NAME === sportName) {
+      try {
+        const eventDate = new Date(event.DATE_TIME);
+        const timeDiff = eventDate - now;
+
+        if (timeDiff > 0 && timeDiff < minDiff) {
+          minDiff = timeDiff;
+          nearestEvent = {
+            sportsName: event.SPORTS_NAME || "N/A",
+            matchName: event.MATCH_NAME || "N/A",
+            dateTime: convertToLocalTime(event.DATE_TIME)
+          };
+        }
+      } catch (error) {
+        console.error('Error processing event date:', error);
       }
-    } catch (error) {
-      console.error('Error processing event date:', error);
     }
   });
+
   return nearestEvent;
 }
-document.addEventListener('DOMContentLoaded', async function () {
-  const legalCountries = ["USA"];
-  const button = document.getElementById('fetch-button');
-  const locationMessage = document.getElementById('location-message');
 
-  function showLocationMessage() {
+function updateCategoryLinks(events) {
+  // Get nearest events
+  const nearestMMAEvent = findNearestEvent(events, "MMA");
+  const nearestNBAEvent = findNearestEvent(events, "Basketball");
+  const nearestNFLEvent = findNearestEvent(events, "Football");
+
+  // Update MMA link
+  const mmaElement = document.getElementById('mmaLink');
+  if (nearestMMAEvent) {
+    updateEventLink(mmaElement, nearestMMAEvent);
+  } else {
+    updateEventLink(mmaElement, null);
+  }
+
+  // Update NBA link
+  const nbaElement = document.getElementById('nbaLink');
+  if (nearestNBAEvent) {
+    updateEventLink(nbaElement, nearestNBAEvent);
+  } else {
+    updateEventLink(nbaElement, null);
+  }
+
+  // Update NFL link
+  const nflElement = document.getElementById('nflLink');
+  if (nearestNFLEvent) {
+    updateEventLink(nflElement, nearestNFLEvent);
+  } else {
+    updateEventLink(nflElement, null);
+  }
+}
+
+function updateEventLink(element, event) {
+  if (element) {
+    if (event) {
+      element.textContent = `NEXT UP - ${event.matchName}`;
+      element.href = '#'; // Update with actual link if available
+    } else {
+      element.textContent = 'Will update soon.';
+      element.href = '#'; // Or you can set this to a real URL if you have one
+    }
+  }
+}
+
+// Convert date to local time format
+function convertToLocalTime(dateString) {
+  const eventDate = new Date(dateString);
+  return eventDate.toLocaleString();  // Adjust the format as needed
+}
+
+// Fetch events from API and update the page
+fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
+  .then(response => response.json())
+  .then(data => {
+    if (Array.isArray(data.documents) && data.documents.length > 0) {
+      updateCategoryLinks(data.documents);
+    } else {
+      // Handle the case where no events are available
+      updateCategoryLinks([]);
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching match data:', error);
+    // Handle errors by showing the default message
+    updateCategoryLinks([]);
+  });
+  document.addEventListener('DOMContentLoaded', async function () {
+    const button = document.getElementById('fetch-button');
+    const locationMessage = document.getElementById('location-message');
+  
+    function showLocationMessage() {
       locationMessage.style.display = 'block';
       setTimeout(() => {
-          locationMessage.style.opacity = '1';
+        locationMessage.style.opacity = '1';
       }, 7); 
       setTimeout(() => {
-          locationMessage.style.opacity = '0';
-          setTimeout(() => {
-              locationMessage.style.display = 'none';
-          }, 1000); 
+        locationMessage.style.opacity = '0';
+        setTimeout(() => {
+          locationMessage.style.display = 'none';
+        }, 1000); 
       }, 5000);
-  }
-
-  function disableButton() {
+    }
+  
+    function disableButton() {
       button.addEventListener('click', function (event) {
-          event.preventDefault(); 
-          showLocationMessage(); 
+        event.preventDefault(); 
+        showLocationMessage(); 
       });
-  }
-
-  try {
-      const response = await fetch('https://ipapi.co/json/');
-      if (!response.ok) {
-          throw new Error('Error fetching location data.');
+    }
+  
+    try {
+      const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
+      if (!linkResponse.ok) {
+        throw new Error('Error fetching the download link.');
       }
-      const data = await response.json();
-      const userCountry = data.country_code ? data.country_code.trim().toUpperCase() : '';
-      console.log("User country detected:", userCountry);
-
-      if (legalCountries.includes(userCountry)) {
-          console.log("Country is legal. Proceeding with app download setup.");
-          try {
-              const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
-              if (!linkResponse.ok) {
-                  throw new Error('Error fetching the download link.');
-              }
-              const linkData = await linkResponse.json();
-              const appUrl = linkData.APP_URL;
-              console.log("App URL received:", appUrl);
-
-              if (appUrl) {
-                  button.addEventListener('click', function (event) {
-                      event.preventDefault();
-                      window.location.href = appUrl;
-                      setTimeout(() => {
-                          window.location.href = 'thank_you.html';
-                      }, 3000);
-                  });
-              } else {
-                  console.error('No valid URL received.');
-                  disableButton();
-              }
-          } catch (error) {
-              console.error('Error fetching the download link:', error);
-              disableButton();
-          }
+      const linkData = await linkResponse.json();
+      const appUrl = linkData.APP_URL;
+      console.log("App URL received:", appUrl);
+  
+      if (appUrl) {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          window.location.href = appUrl;
+          setTimeout(() => {
+            window.location.href = 'thank_you.html';
+          }, 3000);
+        });
       } else {
-          console.log("Country is not legal. Disabling the download button.");
-          disableButton();
+        console.error('No valid URL received.');
+        disableButton();
       }
-  } catch (error) {
-      console.error('Error fetching location data:', error);
+    } catch (error) {
+      console.error('Error fetching the download link:', error);
       disableButton();
-  }
-});
-
-
+    }
+  });
+  
 document.addEventListener('DOMContentLoaded', function() {
   let countdown = 10;
   const countdownElement = document.getElementById('countdown');

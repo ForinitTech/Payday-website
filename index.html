@@ -122,9 +122,9 @@
                             <div class="heightbox"></div>
                             <p class="sub_title"></p>
                         <div class="heightbox"></div>
-                        <p id="location-message" style="display:none; opacity: 0;">
+                        <!-- <p id="location-message" style="display:none; opacity: 0;">
                             We apologize, but our app is not yet available in your location, we are striving to expand soon.
-                        </p>                        
+                        </p>                         -->
                         <ul class="exp_list">
                             <li class="wow fadeInUp" data-wow-duration="1s">
                                 <div class="glow-on-hover">
@@ -156,89 +156,104 @@
     <div class="height_vh dark_bg"></div>
     <!-- start portfolio_warp -->
     <section class="portfolio_warp" id="portfolio_warp">
-    <div class="port_bg_text">
-        <h1 class="bg_strock_text" data-parallax='{"x": -50}'>SPORTS</h1>
-    </div>
-    <center><div class="container">
-        <div class="row portfolio_single_wrap">
-            <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
-                <div class="portfolio_item">
-                    <div class="port_img tilt">
-                        <a><img src="assets/ufc.png" alt="img" class="img-fluid"></a>
-                    </div>
-                    <a class="exp" onclick="togglePopup('ufcPopup', 'nbaPopup')"><span class="exp_inner"><span class="exp_hover">Explore</span></span></a>
-                    <div class="popup" id="ufcPopup">
-                        <center><span class="popuptext">MIXED MARTIAL ARTS</span></center>
-                        <br>
-                        <div class="table-responsive" id="ufcTableRows"></div>
-                        <span class="close" onclick="closePopup('ufcPopup')">&times;</span>
-                    </div>
-                    <div class="port_text">
-                        <a>
-                            <h3 class="port_title">MIXED MARTIAL ARTS</h3>
-                        </a>
-                        <p class="catagory">- <a href="#">NEXT UP - A.PEREIRA VS J.HILL</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
-                <div class="portfolio_item">
-                    <div class="port_img tilt">
-                        <a><img src="assets/basketball.png" alt="img" class="img-fluid"></a>
-                    </div>
-                    <a class="exp" onclick="togglePopup('nbaPopup', 'ufcPopup')"><span class="exp_inner"><span class="exp_hover">Explore</span></span></a>
-                    <div class="popup" id="nbaPopup">
-                        <center><span class="popuptext">BASKETBALL</span></center>
-                        <br>
-                        <div class="table-responsive" id="nbaTableRows"></div>
-                        <span class="close" onclick="closePopup('nbaPopup')">&times;</span>
-                    </div>
-                    <div class="port_text">
-                        <a>
-                            <h3 class="port_title">BASKETBALL</h3>
-                        </a>
-                        <p class="catagory">- <a href="#">NEXT UP - BOS vs. MIL</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
-                <div class="portfolio_item">
-                  <div class="port_img tilt">
-                    <a><img src="assets/rugby.png" alt="img" class="img-fluid"></a>
-                  </div>
-                  <a class="exp" onclick="togglePopup('nflPopup', 'ufcPopup')"><span class="exp_inner"><span class="exp_hover">Explore</span></span></a>
-                  <div class="popup" id="nflPopup">
-                    <center><span class="popuptext">AMERICAN FOOTBALL</span></center>
-                    <br>
-                    <div class="table-responsive" id="nflTableRows"></div>
-                    <span class="close" onclick="closePopup('nflPopup')">&times;</span>
-                  </div>
-                  <div class="port_text">
-                    <a>
-                      <h3 class="port_title">AMERICAN FOOTBALL</h3>
-                    </a>
-                    <p class="catagory">- <a href="#">NEXT UP - CHI BEARS vs. HOU TEXANS</a></p>
-                  </div>
-                </div>
-              </div>  
-            <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
-                <div class="portfolio_item">
-                    <div class="port_img tilt">
-                        <a><img src="assets/soccer.png" alt="img" class="img-fluid"></a>
-                    </div>
-                    <a class="exp"><span class="exp_inner"><span class="exp_hover">Coming Soon!</span></span></a>
-                    <div class="port_text">
-                        <a>
-                            <h3 class="port_title">SOCCER</h3>
-                        </a>
-                        <!-- <p class="catagory">- <a href="#">COMING SOON!</a></p> -->
-                    </div>
-                </div>
-            </div>            
+        <div class="port_bg_text">
+            <h1 class="bg_strock_text" data-parallax='{"x": -50}'>SPORTS</h1>
         </div>
-    </div>
-</center>
-</section>
+        <center>
+            <div class="container">
+                <div class="row portfolio_single_wrap">
+                    <!-- MMA Section -->
+                    <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
+                        <div class="portfolio_item">
+                            <div class="port_img tilt">
+                                <a><img src="assets/ufc.png" alt="img" class="img-fluid"></a>
+                            </div>
+                            <a class="exp" onclick="togglePopup('ufcPopup', 'nbaPopup')">
+                                <span class="exp_inner"><span class="exp_hover">Explore</span></span>
+                            </a>
+                            <div class="popup" id="ufcPopup">
+                                <center><span class="popuptext">MIXED MARTIAL ARTS</span></center>
+                                <br>
+                                <div class="table-responsive" id="ufcTableRows"></div>
+                                <span class="close" onclick="closePopup('ufcPopup')">&times;</span>
+                            </div>
+                            <div class="port_text">
+                                <a>
+                                    <h3 class="port_title">MIXED MARTIAL ARTS</h3>
+                                </a>
+                                <p class="catagory">- <a href="#" id="mmaLink">NEXT UP - </a></p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- NBA Section -->
+                    <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
+                        <div class="portfolio_item">
+                            <div class="port_img tilt">
+                                <a><img src="assets/basketball.png" alt="img" class="img-fluid"></a>
+                            </div>
+                            <a class="exp" onclick="togglePopup('nbaPopup', 'ufcPopup')">
+                                <span class="exp_inner"><span class="exp_hover">Explore</span></span>
+                            </a>
+                            <div class="popup" id="nbaPopup">
+                                <center><span class="popuptext">BASKETBALL</span></center>
+                                <br>
+                                <div class="table-responsive" id="nbaTableRows"></div>
+                                <span class="close" onclick="closePopup('nbaPopup')">&times;</span>
+                            </div>
+                            <div class="port_text">
+                                <a>
+                                    <h3 class="port_title">BASKETBALL</h3>
+                                </a>
+                                <p class="catagory">- <a href="#" id="nbaLink">NEXT UP - </a></p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- NFL Section -->
+                    <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
+                        <div class="portfolio_item">
+                            <div class="port_img tilt">
+                                <a><img src="assets/rugby.png" alt="img" class="img-fluid"></a>
+                            </div>
+                            <a class="exp" onclick="togglePopup('nflPopup', 'ufcPopup')">
+                                <span class="exp_inner"><span class="exp_hover">Explore</span></span>
+                            </a>
+                            <div class="popup" id="nflPopup">
+                                <center><span class="popuptext">AMERICAN FOOTBALL</span></center>
+                                <br>
+                                <div class="table-responsive" id="nflTableRows"></div>
+                                <span class="close" onclick="closePopup('nflPopup')">&times;</span>
+                            </div>
+                            <div class="port_text">
+                                <a>
+                                    <h3 class="port_title">AMERICAN FOOTBALL</h3>
+                                </a>
+                                <p class="catagory">- <a href="#" id="nflLink">NEXT UP - </a></p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Soccer Section (coming soon) -->
+                    <div class="col-md-6 col-sm-12 col-xs-12 portfolio_single_item wow fadeInUp">
+                        <div class="portfolio_item">
+                            <div class="port_img tilt">
+                                <a><img src="assets/soccer.png" alt="img" class="img-fluid"></a>
+                            </div>
+                            <a class="exp"><span class="exp_inner"><span class="exp_hover">Coming Soon!</span></span></a>
+                            <div class="port_text">
+                                <a>
+                                    <h3 class="port_title">SOCCER</h3>
+                                </a>
+                                <p class="catagory">- <a href="#">COMING SOON!</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </section>
+    
     <!-- end portfolio_warp -->
 
     <!-- start about_wrap -->
