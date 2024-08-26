@@ -2792,7 +2792,6 @@ img {
 /*============================= end  blog          ================================*/
 
 /* start footer */
-
 .footer {
     background: #000 no-repeat scroll top left/cover;
     padding: 115px 0 100px;
@@ -2800,168 +2799,86 @@ img {
     z-index: 10;
 }
 
-.footer .footer_content .footer_logo {
-    margin-bottom: 30px;
+.footer_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.footer .footer_content .footer_logo a {
-    display: inline-block;
-}
-
-.footer .footer_content .footer_logo a .logo_text {
+.footer_left h2 {
+    font-size: 24px;
     color: #f6f7fb;
-    position: relative;
-    font-size: 25px;
-    font-weight: normal;
-    line-height: 40px;
-    font-family: "futurabook";
-    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
-.footer .footer_content .footer_logo a .logo_text:before {
-    position: absolute;
-    content: "/";
-    left: -15px;
-    top: -8px;
-    width: 100%;
-    height: 100%;
-    color: #979591;
-    text-align: left;
+.footer_left .availability-list {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
 }
 
-.footer .footer_content .footer_title {
-    color: #f6f7fb;
-    font-size: 50px;
-    font-family: "futurabook";
-    line-height: 55px;
-    letter-spacing: 1px;
-    font-weight: normal;
-    max-width: 542px;
-    width: 100%;
-    margin: 0 auto 60px;
-}
-
-.footer .footer_content .footer_title span {
-    font-family: "futuraheavy";
-}
-
-.footer ul {
+.footer_right ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.footer .footer_contact {
+.footer_right .footer_contact {
     margin-bottom: 45px;
     letter-spacing: 2px;
 }
 
-.footer .footer_contact li {
-    display: block;
+.footer_right .footer_contact li {
     margin-bottom: 10px;
 }
 
-.footer .footer_contact li a {
-    display: inline-block;
+.footer_right .footer_contact li a {
     color: #bbbbbb;
     font-family: "Poppins", sans-serif;
     font-size: 20px;
     line-height: 28px;
     font-weight: 500;
     transition: all 0.5s;
-    height: 28px;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 350px;
+    text-decoration: none;
 }
 
-.footer .footer_contact li a span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    transition: all 0.5s;
-}
-
-.footer .footer_contact li a span+span {
-    top: 100%;
-}
-
-.footer .footer_contact li a:hover span {
-    top: -100%;
+.footer_right .footer_contact li a:hover {
     color: #fff;
 }
 
-.footer .footer_contact li a:hover span+span {
-    top: 0;
+.footer_right p {
+    font-weight: lighter;
+    font-size: 11px;
+    color: grey;
+    margin-top: 10px;
 }
 
-.footer .footer_social {
-    margin-bottom: 15px;
+.footer_right p a {
+    font-size: 10px;
+    color: grey;
+    text-decoration: underline;
 }
 
-.footer .footer_social li {
-    display: inline-block;
-}
-
-.footer .footer_social li+li {
-    margin-left: 30px;
-}
-
-.footer .footer_social li a {
-    display: inline-block;
-    font-size: 16px;
-    color: #888888;
-    transition: all 0.5s;
-    width: 20px;
-    height: 16px;
-    position: relative;
-    overflow: hidden;
-}
-
-.footer .footer_social li a i {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all .5s;
-}
-
-.footer .footer_social li a i+i {
-    top: 100%;
-}
-
-.footer .footer_social li a:hover {
-    color: #fff;
-}
-
-.footer .footer_social li a:hover i {
-    top: -100%;
-    color: #fff;
-}
-
-.footer .footer_social li a:hover i+i {
-    top: 0;
-}
-
-.footer .footer_copy_right {
+.footer_copy_right {
     color: #848892;
     font-weight: 300;
     font-size: 13px;
     font-family: "Poppins", sans-serif;
     line-height: 28px;
+    margin-top: 10px;
 }
 
-.footer .footer_copy_right a {
+.footer_copy_right a {
     color: #bbbbbb;
     transition: all 0.5s;
 }
 
-.footer .footer_copy_right a:hover {
+.footer_copy_right a:hover {
     color: #fff;
 }
+
 
 /* end footer */
 
