@@ -2737,7 +2737,6 @@ img {
 
 /*============================= end  blog          ================================*/
 
-/* start footer */
 .footer {
     background: #000 no-repeat scroll top left/cover;
     padding: 115px 0 100px;
@@ -2755,7 +2754,7 @@ img {
 
 .footer_left h2 {
     font-size: 24px;
-    color: #fff;
+    color: #f6f7fb;
     margin-bottom: 10px;
 }
 
@@ -2825,8 +2824,6 @@ img {
     color: #fff;
 }
 
-
-/* end footer */
 
 .capabiliti_wrap .capabiliti_tab_content .fade {
     transition: opacity 1s linear;
