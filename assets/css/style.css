@@ -2737,6 +2737,7 @@ img {
 
 /*============================= end  blog          ================================*/
 
+
 .footer {
     background: #000 no-repeat scroll top left/cover;
     padding: 115px 0 100px;
@@ -2834,7 +2835,7 @@ img {
     left: 50%;
     width: 90%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8); /* Transparent black (50% opacity) */
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: left;
     font-weight: bold;
@@ -2855,7 +2856,7 @@ img {
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 4; /* Set a higher z-index to ensure it's above the popup */
+    z-index: 4; 
 }
 
 .popup .popuptext::after {
