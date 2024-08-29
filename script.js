@@ -222,18 +222,18 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     if (Array.isArray(data.documents) && data.documents.length > 0) {
       updateCategoryLinks(data.documents);
     } else {
-      // Handle the case where no events are available
       updateCategoryLinks([]);
     }
   })
   .catch(error => {
     console.error('Error fetching match data:', error);
-    // Handle errors by showing the default message
     updateCategoryLinks([]);
   });
-  document.addEventListener('DOMContentLoaded', async function () {
+  
+  document.addEventListener('DOMContentLoaded', function () {
     const button = document.getElementById('fetch-button');
     const locationMessage = document.getElementById('location-message');
+    let apiCallCount = 0; // Initialize the API call counter
   
     function showLocationMessage() {
       locationMessage.style.display = 'block';
@@ -255,33 +255,37 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
       });
     }
   
-    try {
-      const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
-      if (!linkResponse.ok) {
-        throw new Error('Error fetching the download link.');
-      }
-      const linkData = await linkResponse.json();
-      const appUrl = linkData.APP_URL;
-      console.log("App URL received:", appUrl);
+    button.addEventListener('click', async function (event) {
+      event.preventDefault();
   
-      if (appUrl) {
-        button.addEventListener('click', function (event) {
-          event.preventDefault();
+      try {
+        apiCallCount++; 
+        console.log(`API has been called ${apiCallCount} times`);
+  
+        const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
+        if (!linkResponse.ok) {
+          throw new Error('Error fetching the download link.');
+        }
+        const linkData = await linkResponse.json();
+        const appUrl = linkData.APP_URL;
+        console.log("App URL received:", appUrl);
+  
+        if (appUrl) {
           window.location.href = appUrl;
           setTimeout(() => {
             window.location.href = 'thank_you.html';
           }, 3000);
-        });
-      } else {
-        console.error('No valid URL received.');
-        disableButton();
+        } else {
+          console.error('No valid URL received.');
+          showLocationMessage(); 
+        }
+      } catch (error) {
+        console.error('Error fetching the download link:', error);
+        showLocationMessage(); 
       }
-    } catch (error) {
-      console.error('Error fetching the download link:', error);
-      disableButton();
-    }
+    });
   });
-  
+   
 document.addEventListener('DOMContentLoaded', function() {
   let countdown = 10;
   const countdownElement = document.getElementById('countdown');
