@@ -35,7 +35,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
       console.error('No event data found in response.');
       updatePromoMessage(null);
 
-      // Display message when no events are available
       document.getElementById('ufcTableRows').innerHTML = "Will update you soon.";
       document.getElementById('nbaTableRows').innerHTML = "Will update you soon.";
       document.getElementById('nflTableRows').innerHTML = "Will update you soon.";
@@ -49,12 +48,9 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     let allEvents = [...ufcEvents, ...nbaEvents, ...nflEvents];
     let nearestEvent = findNearestEvent(allEvents);
 
-    //console.log("All Events:", allEvents);
-    //console.log("Nearest Event:", nearestEvent);
 
     updatePromoMessage(nearestEvent);
 
-    // UFC Events
     if (ufcEvents.length > 0) {
       let ufcRows = '';
       ufcEvents.forEach((document, index) => {
@@ -70,8 +66,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     } else {
       document.getElementById('ufcTableRows').innerHTML = "Will update you soon.";
     }
-
-    // NBA Events
     if (nbaEvents.length > 0) {
       let nbaRows = '';
       nbaEvents.forEach((document, index) => {
@@ -88,7 +82,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
       document.getElementById('nbaTableRows').innerHTML = "Will update you soon.";
     }
 
-    // NFL Events
     if (nflEvents.length > 0) {
       let nflRows = '';
       nflEvents.forEach((document, index) => {
@@ -109,7 +102,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
   .catch(error => {
     console.error('Error fetching match data:', error);
 
-    // Display message when an error occurs
     document.getElementById('ufcTableRows').innerHTML = "Will update you soon.";
     document.getElementById('nbaTableRows').innerHTML = "Will update you soon.";
     document.getElementById('nflTableRows').innerHTML = "Will update you soon.";
@@ -167,12 +159,10 @@ function findNearestEvent(events, sportName) {
 }
 
 function updateCategoryLinks(events) {
-  // Get nearest events
   const nearestMMAEvent = findNearestEvent(events, "MMA");
   const nearestNBAEvent = findNearestEvent(events, "Basketball");
   const nearestNFLEvent = findNearestEvent(events, "Football");
 
-  // Update MMA link
   const mmaElement = document.getElementById('mmaLink');
   if (nearestMMAEvent) {
     updateEventLink(mmaElement, nearestMMAEvent);
@@ -180,7 +170,6 @@ function updateCategoryLinks(events) {
     updateEventLink(mmaElement, null);
   }
 
-  // Update NBA link
   const nbaElement = document.getElementById('nbaLink');
   if (nearestNBAEvent) {
     updateEventLink(nbaElement, nearestNBAEvent);
@@ -188,7 +177,6 @@ function updateCategoryLinks(events) {
     updateEventLink(nbaElement, null);
   }
 
-  // Update NFL link
   const nflElement = document.getElementById('nflLink');
   if (nearestNFLEvent) {
     updateEventLink(nflElement, nearestNFLEvent);
@@ -201,21 +189,19 @@ function updateEventLink(element, event) {
   if (element) {
     if (event) {
       element.textContent = `NEXT UP - ${event.matchName}`;
-      element.href = '#'; // Update with actual link if available
+      element.href = '#';  
     } else {
       element.textContent = 'Will update soon.';
-      element.href = '#'; // Or you can set this to a real URL if you have one
+      element.href = '#'; 
     }
   }
 }
 
-// Convert date to local time format
 function convertToLocalTime(dateString) {
   const eventDate = new Date(dateString);
-  return eventDate.toLocaleString();  // Adjust the format as needed
+  return eventDate.toLocaleString(); 
 }
 
-// Fetch events from API and update the page
 fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
   .then(response => response.json())
   .then(data => {
@@ -255,13 +241,11 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
       });
     }
   
-    // Move the fetch logic into the button click event listener
     button.addEventListener('click', async function (event) {
       event.preventDefault();
   
       try {
         apiCallCount++; 
-        //console.log(`API has been called ${apiCallCount} times`); 
   
         const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
         if (!linkResponse.ok) {
@@ -269,7 +253,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
         }
         const linkData = await linkResponse.json();
         const appUrl = linkData.APP_URL;
-        ////console.log("App URL received:", appUrl);
   
         if (appUrl) {
           window.location.href = appUrl;
