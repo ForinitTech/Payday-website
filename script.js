@@ -233,7 +233,7 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
   document.addEventListener('DOMContentLoaded', function () {
     const button = document.getElementById('fetch-button');
     const locationMessage = document.getElementById('location-message');
-    let apiCallCount = 0; // Initialize the API call counter
+    let apiCallCount = 0; 
   
     function showLocationMessage() {
       locationMessage.style.display = 'block';
