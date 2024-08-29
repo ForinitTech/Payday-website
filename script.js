@@ -49,8 +49,8 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     let allEvents = [...ufcEvents, ...nbaEvents, ...nflEvents];
     let nearestEvent = findNearestEvent(allEvents);
 
-    console.log("All Events:", allEvents);
-    console.log("Nearest Event:", nearestEvent);
+    //console.log("All Events:", allEvents);
+    //console.log("Nearest Event:", nearestEvent);
 
     updatePromoMessage(nearestEvent);
 
@@ -255,12 +255,13 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
       });
     }
   
+    // Move the fetch logic into the button click event listener
     button.addEventListener('click', async function (event) {
       event.preventDefault();
   
       try {
         apiCallCount++; 
-        console.log(`API has been called ${apiCallCount} times`);
+        //console.log(`API has been called ${apiCallCount} times`); 
   
         const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
         if (!linkResponse.ok) {
@@ -268,7 +269,7 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
         }
         const linkData = await linkResponse.json();
         const appUrl = linkData.APP_URL;
-        console.log("App URL received:", appUrl);
+        ////console.log("App URL received:", appUrl);
   
         if (appUrl) {
           window.location.href = appUrl;
