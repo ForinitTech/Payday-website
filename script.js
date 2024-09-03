@@ -219,57 +219,103 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
   document.addEventListener('DOMContentLoaded', function () {
     const button = document.getElementById('fetch-button');
     const locationMessage = document.getElementById('location-message');
-    let apiCallCount = 0; 
-  
-    function showLocationMessage() {
-      locationMessage.style.display = 'block';
-      setTimeout(() => {
-        locationMessage.style.opacity = '1';
-      }, 7); 
-      setTimeout(() => {
-        locationMessage.style.opacity = '0';
+    let isProcessing = false; // Flag to prevent multiple requests
+
+    function showLocationMessage(message) {
+        locationMessage.textContent = message;
+        locationMessage.style.display = 'block';
         setTimeout(() => {
-          locationMessage.style.display = 'none';
-        }, 1000); 
-      }, 5000);
+            locationMessage.style.opacity = '1';
+        }, 7);
+        setTimeout(() => {
+            locationMessage.style.opacity = '0';
+            setTimeout(() => {
+                locationMessage.style.display = 'none';
+            }, 1000);
+        }, 5000);
     }
-  
-    function disableButton() {
-      button.addEventListener('click', function (event) {
-        event.preventDefault(); 
-        showLocationMessage(); 
-      });
+
+    async function fetchLocation() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            if (!response.ok) {
+                throw new Error('Error fetching location.');
+            }
+            const data = await response.json();
+            return data.country_code === 'US';
+        } catch (error) {
+            console.error('Error fetching location:', error);
+            return false;
+        }
     }
-  
+
+    async function updateCount(isInUSA) {
+        const apiPayload = { updateCount: isInUSA };
+        console.log('Sending updateCount:', apiPayload); // Log the payload
+        try {
+            const updateResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(apiPayload)
+            });
+            if (!updateResponse.ok) {
+                throw new Error('Error updating the count.');
+            }
+            const responseData = await updateResponse.json();
+            console.log('Update response:', responseData); // Log the response
+        } catch (error) {
+            console.error('Error updating the count:', error);
+        }
+    }
+
     button.addEventListener('click', async function (event) {
-      event.preventDefault();
-  
-      try {
-        apiCallCount++; 
-  
-        const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
-        if (!linkResponse.ok) {
-          throw new Error('Error fetching the download link.');
+        event.preventDefault();
+
+        if (isProcessing) {
+            console.log('Already processing. Ignoring click.');
+            return; // Prevent multiple requests
         }
-        const linkData = await linkResponse.json();
-        const appUrl = linkData.APP_URL;
-  
-        if (appUrl) {
-          window.location.href = appUrl;
-          setTimeout(() => {
-            window.location.href = 'thank_you.html';
-          }, 3000);
-        } else {
-          console.error('No valid URL received.');
-          showLocationMessage(); 
+
+        console.log('Processing request...');
+        isProcessing = true; 
+
+        try {
+            // Determine user's location
+            const isInUSA = await fetchLocation();
+            console.log('User is in USA:', isInUSA);
+
+            // Fetch the download link
+            const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
+            if (!linkResponse.ok) {
+                throw new Error('Error fetching the download link.');
+            }
+            const linkData = await linkResponse.json();
+            const appUrl = linkData.APP_URL;
+
+            // Update the count based on location
+            await updateCount(isInUSA);
+
+            if (appUrl) {
+                window.location.href = appUrl;
+                setTimeout(() => {
+                    // window.location.href = 'thank_you.html';
+                }, 3000);
+            } else {
+                console.error('No valid URL received.');
+                showLocationMessage('Unable to get download link.');
+            }
+        } catch (error) {
+            console.error('Error processing request:', error);
+            showLocationMessage('An error occurred while processing your request.');
+        } finally {
+            isProcessing = false; // Reset flag after processing
+            console.log('Processing complete.');
         }
-      } catch (error) {
-        console.error('Error fetching the download link:', error);
-        showLocationMessage(); 
-      }
     });
-  });
-   
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   let countdown = 10;
   const countdownElement = document.getElementById('countdown');
