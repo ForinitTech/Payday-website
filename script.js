@@ -251,7 +251,7 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
 
     async function updateCount(isInUSA) {
         const apiPayload = { updateCount: isInUSA };
-        console.log('Sending updateCount:', apiPayload); // Log the payload
+        console.log('Sending updateCount:', apiPayload);
         try {
             const updateResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller', {
                 method: 'POST',
@@ -264,43 +264,36 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
                 throw new Error('Error updating the count.');
             }
             const responseData = await updateResponse.json();
-            console.log('Update response:', responseData); // Log the response
+            console.log('Update response:', responseData); 
         } catch (error) {
             console.error('Error updating the count:', error);
         }
     }
-
     button.addEventListener('click', async function (event) {
         event.preventDefault();
 
         if (isProcessing) {
             console.log('Already processing. Ignoring click.');
-            return; // Prevent multiple requests
+            return;
         }
-
         console.log('Processing request...');
         isProcessing = true; 
 
         try {
-            // Determine user's location
             const isInUSA = await fetchLocation();
             console.log('User is in USA:', isInUSA);
-
-            // Fetch the download link
             const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
             if (!linkResponse.ok) {
                 throw new Error('Error fetching the download link.');
             }
             const linkData = await linkResponse.json();
             const appUrl = linkData.APP_URL;
-
-            // Update the count based on location
             await updateCount(isInUSA);
 
             if (appUrl) {
                 window.location.href = appUrl;
                 setTimeout(() => {
-                    // window.location.href = 'thank_you.html';
+                    window.location.href = 'thank_you.html';
                 }, 3000);
             } else {
                 console.error('No valid URL received.');
@@ -310,7 +303,7 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
             console.error('Error processing request:', error);
             showLocationMessage('An error occurred while processing your request.');
         } finally {
-            isProcessing = false; // Reset flag after processing
+            isProcessing = false;
             console.log('Processing complete.');
         }
     });
@@ -324,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const timer = setInterval(function() {
       countdown--;
       countdownElement.textContent = countdown;
-
       if (countdown <= 0) {
           clearInterval(timer);
           downloadMessage.classList.remove('hidden');
