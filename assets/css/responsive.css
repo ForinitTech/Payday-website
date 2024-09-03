@@ -264,7 +264,7 @@
         margin-left: 10px;
     }
     header.header .sub_footer .footer_contact li a {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 16px;
         height: 20px;
     }
@@ -943,6 +943,11 @@
 /* @media (max-width: 576px ) */
 
 @media (max-width: 440px) {
+    .footer .footer_contact li a {
+        font-size: 14px;
+        line-height: 20px;
+        height: 20px;
+    }
     .glow-on-hover {
         transition: 0.2s;
         width: 200px;
@@ -1089,3 +1094,4 @@
         line-height: 24px;
     }
 }
+
