@@ -169,7 +169,6 @@ function updateCategoryLinks(events) {
   } else {
     updateEventLink(mmaElement, null);
   }
-
   const nbaElement = document.getElementById('nbaLink');
   if (nearestNBAEvent) {
     updateEventLink(nbaElement, nearestNBAEvent);
@@ -184,7 +183,6 @@ function updateCategoryLinks(events) {
     updateEventLink(nflElement, null);
   }
 }
-
 function updateEventLink(element, event) {
   if (element) {
     if (event) {
@@ -196,12 +194,10 @@ function updateEventLink(element, event) {
     }
   }
 }
-
 function convertToLocalTime(dateString) {
   const eventDate = new Date(dateString);
   return eventDate.toLocaleString(); 
 }
-
 fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
   .then(response => response.json())
   .then(data => {
@@ -219,7 +215,7 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
   document.addEventListener('DOMContentLoaded', function () {
     const button = document.getElementById('fetch-button');
     const locationMessage = document.getElementById('location-message');
-    let isProcessing = false; // Flag to prevent multiple requests
+    let isProcessing = false; 
 
     function showLocationMessage(message) {
         locationMessage.textContent = message;
@@ -234,7 +230,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
             }, 1000);
         }, 5000);
     }
-
     async function fetchLocation() {
         try {
             const response = await fetch('https://ipapi.co/json/');
@@ -248,10 +243,8 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
             return false;
         }
     }
-
     async function updateCount(isInUSA) {
         const apiPayload = { updateCount: isInUSA };
-        console.log('Sending updateCount:', apiPayload);
         try {
             const updateResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller', {
                 method: 'POST',
@@ -264,7 +257,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
                 throw new Error('Error updating the count.');
             }
             const responseData = await updateResponse.json();
-            console.log('Update response:', responseData); 
         } catch (error) {
             console.error('Error updating the count:', error);
         }
@@ -273,15 +265,12 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
         event.preventDefault();
 
         if (isProcessing) {
-            console.log('Already processing. Ignoring click.');
             return;
         }
-        console.log('Processing request...');
         isProcessing = true; 
 
         try {
             const isInUSA = await fetchLocation();
-            console.log('User is in USA:', isInUSA);
             const linkResponse = await fetch('https://us-central1-payday-8ab25.cloudfunctions.net/appLinkCaller');
             if (!linkResponse.ok) {
                 throw new Error('Error fetching the download link.');
@@ -304,7 +293,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
             showLocationMessage('An error occurred while processing your request.');
         } finally {
             isProcessing = false;
-            console.log('Processing complete.');
         }
     });
 });
