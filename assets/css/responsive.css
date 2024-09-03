@@ -943,11 +943,7 @@
 /* @media (max-width: 576px ) */
 
 @media (max-width: 440px) {
-    .footer .footer_contact li a {
-        font-size: 14px;
-        line-height: 20px;
-        height: 20px;
-    }
+   
     .glow-on-hover {
         transition: 0.2s;
         width: 200px;
@@ -1095,3 +1091,12 @@
     }
 }
 
+
+
+@media (max-width: 262px) { 
+.footer .footer_contact li a {
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+}
+}
