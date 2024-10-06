@@ -9,7 +9,7 @@ function updatePromoMessage(nearestEvent) {
     const promoMessage = generatePromoMessage(nearestEvent);
     promoMessageElement.innerHTML = promoMessage;
   } else {
-    promoMessageElement.innerHTML = 'Play Daily Fantasy Sports and Win Big!';
+    promoMessageElement.innerHTML = 'Unlock Early Access to Massive Wins🏆';
   }
 }
 function togglePopup(popupToShow, popupToHide) {

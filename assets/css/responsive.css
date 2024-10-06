@@ -398,13 +398,13 @@
     }
     
     .hey::before {
-        content: "PAYDAY";
+        content: "DOWNLOAD";
         display: block;
         font-size: 60px;
     }
     
     .hey::after {
-        content: "FANTASYBOOK";
+        content: "PAYDAY FANTASYBOOK NOW!";
         display: block;
         font-size: 60px; 
     }
