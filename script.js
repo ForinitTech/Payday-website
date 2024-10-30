@@ -5,13 +5,24 @@ function generatePromoMessage(event) {
 function updatePromoMessage(nearestEvent) {
   const promoMessageElement = document.querySelector('.sub_title');
   
+  // Clear previous message and remove animation class
+  promoMessageElement.classList.remove('animated');
+  promoMessageElement.innerHTML = ''; // Clear the previous text
+
+  // Set the new promo message
   if (nearestEvent) {
-    const promoMessage = generatePromoMessage(nearestEvent);
-    promoMessageElement.innerHTML = promoMessage;
+      const promoMessage = generatePromoMessage(nearestEvent);
+      promoMessageElement.innerHTML = promoMessage;
   } else {
-    promoMessageElement.innerHTML = 'Unlock Early Access to Massive Wins🏆';
+      promoMessageElement.innerHTML = 'Get a Head Start on Huge Wins!';
   }
+
+  // Trigger the animation
+  setTimeout(() => {
+      promoMessageElement.classList.add('animated');
+  }, 50); // Short delay to ensure animation triggers correctly
 }
+
 function togglePopup(popupToShow, popupToHide) {
   if (popupToHide) {
       document.getElementById(popupToHide).style.display = 'none';
@@ -34,23 +45,17 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     if (!Array.isArray(data.documents) || data.documents.length === 0) {
       console.error('No event data found in response.');
       updatePromoMessage(null);
-
       document.getElementById('ufcTableRows').innerHTML = "Will update you soon.";
       document.getElementById('nbaTableRows').innerHTML = "Will update you soon.";
       document.getElementById('nflTableRows').innerHTML = "Will update you soon.";
       return;
     }
-
     const ufcEvents = data.documents.filter(document => document.SPORTS_NAME === "MMA");
     const nbaEvents = data.documents.filter(document => document.SPORTS_NAME === "Basketball");
     const nflEvents = data.documents.filter(document => document.SPORTS_NAME === "Football");
-
     let allEvents = [...ufcEvents, ...nbaEvents, ...nflEvents];
     let nearestEvent = findNearestEvent(allEvents);
-
-
     updatePromoMessage(nearestEvent);
-
     if (ufcEvents.length > 0) {
       let ufcRows = '';
       ufcEvents.forEach((document, index) => {
@@ -81,7 +86,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     } else {
       document.getElementById('nbaTableRows').innerHTML = "Will update you soon.";
     }
-
     if (nflEvents.length > 0) {
       let nflRows = '';
       nflEvents.forEach((document, index) => {
@@ -97,7 +101,6 @@ fetch("https://us-central1-payday-8ab25.cloudfunctions.net/getMatchesWeb")
     } else {
       document.getElementById('nflTableRows').innerHTML = "Will update you soon.";
     }
-
   })
   .catch(error => {
     console.error('Error fetching match data:', error);

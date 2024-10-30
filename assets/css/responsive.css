@@ -398,15 +398,15 @@
     }
     
     .hey::before {
-        content: "DOWNLOAD";
+        content: "Play Fantasy Games & Win Cash ";
         display: block;
-        font-size: 60px;
+        font-size: 40px;
     }
     
     .hey::after {
-        content: "PAYDAY FANTASYBOOK NOW!";
+        content: " It's Payday Every Day!";
         display: block;
-        font-size: 60px; 
+        font-size: 40px; 
     }
     .hero_warp .banner_content .exp_list {
         flex-direction: column;
@@ -417,7 +417,7 @@
         max-width: 350px;
     }
     .sub_title{
-        font-size: 12px;
+        font-size: 18px;
     }
     .parallax-layer #img2 {
         height: 80%;
