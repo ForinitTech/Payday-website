@@ -1605,10 +1605,11 @@
   }
   
   .w-nav-brand {
-    float: left;
     color: #333;
     text-decoration: none;
     position: relative;
+    height: 100%;
+    width: 100%;
   }
   
   .w-nav-link {
@@ -3486,7 +3487,7 @@
   
   .nav-dropdown-list {
     background-color: #fff;
-    width: 200px;
+    width: 250px;
     padding: 15px 20px;
   }
   
@@ -5106,6 +5107,7 @@
   .brand-tablet {
     display: none;
     height: 30px;
+    width: 30px;
   }
   
   .paragraph-gray-style-guide {
@@ -5161,7 +5163,7 @@
   }
   
   .banner-home {
-    background-image: linear-gradient(to top, #00000080, #0000), linear-gradient(#00000080, #00000080), url("https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-image: linear-gradient(to top, #00000080, #0000), linear-gradient(#00000080, #00000080), url("../img/homepage.jpeg");
     background-position: 0 0, 0 0, 50%;
     background-size: auto, auto, cover;
     align-items: center;
@@ -5240,8 +5242,8 @@
 
 .future-march-teams-wrapper {
     display: grid;
-    grid-template-columns: 0.5fr auto 0.5fr; /* This will create 3 equal columns */
-    align-items: center;               /* Vertically center the text */
+    grid-template-columns: 0.5fr auto 0.5fr; 
+    align-items: center;     
     width: 100%;
 }
 
@@ -5251,9 +5253,6 @@
     align-items: center;
 }
 
-.vs-text {
-    margin: 0 20px;    /* Space between teams and "vs" */
-}
 
 .future-march-team-logo {
     object-fit: scale-down;
@@ -5370,7 +5369,7 @@
   
   .our-story-bottom-image-wrapper {
     z-index: 0;
-    max-width: 1170px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
@@ -5394,6 +5393,7 @@
   }
   
   .accordion-toggle-underline {
+    
     white-space: normal;
     border-bottom: 1px solid #8585854d;
     flex-direction: row;
@@ -5410,10 +5410,16 @@
   }
   
   .accordion-underline-list-content {
+    text-align: left;
     margin-top: 20px;
     margin-bottom: 0;
+    
   }
-  
+  .accordion-underline-list-content span {
+    display: block; /* Forces each span to take a new line */
+    text-align: left;
+}
+
   .accordion-item-underline {
     box-shadow: none;
     background-color: #0000;
@@ -6944,4 +6950,48 @@
 
 .view-more-button:hover, .view-less-button:hover {
   background-color: #fff;
+}
+
+
+
+/* Section Styles */
+.download-app-section {
+  width: 100%;
+  padding: 40px;
+  background-color: #000;
+}
+
+.download-app-container {
+  background-color: #e90c3f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 30px;
+}
+
+.text-container {
+  padding: 50px;
+  max-width: 50%;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtext {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.button img {
+  max-width: 140px;
 }

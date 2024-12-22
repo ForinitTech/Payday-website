@@ -213,6 +213,8 @@
   
     .our-story-bottom-image-wrapper {
       padding-left: 0;
+      margin-left: 15%;
+
       padding-right: 0;
     }
   
@@ -1643,6 +1645,7 @@
   
     .our-story-bottom-image-wrapper {
       position: relative;
+
     }
   
     .our-story-image-bg {
