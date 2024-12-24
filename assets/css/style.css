@@ -2998,19 +2998,7 @@
     display: flex;
   }
   
-  li {
-    color: var(--base-dark);
-    background-image: url("https://cdn.prod.website-files.com/63b7f08aa7e15100e972d40a/63b7f08aa7e15192c272d491_list-bullet.svg");
-    background-position: 0 7px;
-    background-repeat: no-repeat;
-    background-size: auto;
-    align-items: center;
-    padding-left: 22px;
-    line-height: 1.4em;
-    display: flex;
-    position: relative;
-  }
-  
+
   label {
     margin-bottom: 10px;
     display: block;
@@ -5351,7 +5339,7 @@
     z-index: 0;
     background-color: var(--white);
     width: 100%;
-    height: 220px;
+    height: 120px;
     position: absolute;
     inset: 0% 0% auto;
   }
@@ -5367,15 +5355,10 @@
     position: absolute;
   }
   
-  .our-story-bottom-image-wrapper {
+  .our-story-bottom-image-wrapper{
     z-index: 0;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    position: absolute;
-    inset: auto 0% 0%;
+    max-width: 500px;
+    position: relative;
   }
   
   .our-story-image-bg {
@@ -5383,17 +5366,15 @@
     opacity: .2;
     width: 360px;
     height: 360px;
-    position: absolute;
+    position: relative;
     justify-content: center;
   }
   
   .our-story-top-image-wrapper {
-    margin-bottom: 50px;
     position: relative;
   }
   
   .accordion-toggle-underline {
-    
     white-space: normal;
     border-bottom: 1px solid #8585854d;
     flex-direction: row;
@@ -5543,14 +5524,16 @@
   
   .counter-numbers {
     color: var(--primary);
-    text-shadow: 0 0 2px var(--white), 0 0 2px var(--white), 0 0 2px var(--white), 0 0 2px var(--white);
+    -webkit-text-stroke: 0.5px var(--white); 
     margin-top: 10px;
     font-family: Anton, sans-serif;
     font-size: 74px;
     line-height: 1.2em;
+    
   }
   
   .next-match-counter-items {
+    
     flex-direction: column;
     align-items: center;
     display: flex;
@@ -6879,12 +6862,12 @@
 }
 
 .match-header {
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   margin-bottom: 10px;
 }
-
 .match-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -6912,13 +6895,15 @@
 .player {
   display: flex;
   justify-content: space-between;
-  font-size: 1rem;
 }
 
 .player span {
-  font-size: 1rem;
+  padding-top:10px;
+  font-size: 1.25rem;
 }
-
+.player p{
+  font-size: 14px;
+}
 .player .score {
   font-weight: bold;
   color: #fbbc05;
@@ -6994,4 +6979,130 @@
 
 .button img {
   max-width: 140px;
+}
+
+
+.footballmatchname{
+  font-size: 50px;
+}
+
+
+
+
+.state-section {
+  padding: 80px 20px;
+  margin: 30px auto;
+  border-radius: 10px;
+  max-width: 900px;
+}
+.state-section h1 {
+  text-align: center;
+  margin-bottom: 80px;
+  color: #333;
+}
+.state-list {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin: 0;
+  list-style: none; /* Remove default bullets */
+}
+.state-list li {
+  padding-left: 15 px;
+  padding: 8px;
+  position: relative;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.state-list li::before {
+  position: relative;
+  left: 0;
+  top: 50%;
+  font-size: 20px;
+  color: #333;
+}
+.state-list li:hover {
+  transform: scale(1.05);
+}
+@media (max-width: 600px) {
+  .state-section h1 {
+      font-size: 20px;
+  }
+  .state-list li {
+      font-size: 14px;
+      padding: 8px;
+  }
+}
+
+.download-states{
+  padding-top: 80px;
+}
+
+
+
+
+.container-large {
+  padding: 20px;
+}
+
+.all-features-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+  justify-content: space-between; /* Adjusts spacing dynamically */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-content-wrapper {
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%; /* Default width for larger screens */
+  flex: 1 1 calc(30% - 20px); /* Adjust flex basis for dynamic widths */
+  box-sizing: border-box;
+}
+
+.icon-round {
+  flex-shrink: 0;
+  margin: 0 auto 20px; /* Center icon and add space below */
+  background-color: #e90c3f;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.feature-content {
+  flex-grow: 1;
+}
+
+.feature-subtitle {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.text-medium {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .feature-content-wrapper {
+    width: 45%; /* Two items per row for medium screens */
+    flex: 1 1 calc(45% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-content-wrapper {
+    width: 100%; /* Single column for small screens */
+    flex: 1 1 100%;
+  }
 }

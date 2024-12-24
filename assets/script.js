@@ -56281,7 +56281,7 @@
             const footballMatch = matches.find(match => match.SPORTS_NAME === "Football");
             if (footballMatch) {
                 const footballMatchTime = new Date(footballMatch.DATE_TIME);
-                document.getElementById("football-match-name").textContent = `${footballMatch.TEAM_1_SHORT} vs ${footballMatch.TEAM_2_SHORT}`;
+                document.getElementById("football-match-name").innerHTML = `${footballMatch.TEAM_1_SHORT} <span style="color: #e90c3f;   font-weight: bold;">vs</span> ${footballMatch.TEAM_2_SHORT}`;
                 document.getElementById("football-match-date").textContent = formatDate(footballMatchTime);
                 startCountdown(footballMatchTime, "#football-match .live");
             }
@@ -56290,8 +56290,10 @@
             const basketballMatch = matches.find(match => match.SPORTS_NAME === "Basketball");
             if (basketballMatch) {
                 const basketballMatchTime = new Date(basketballMatch.DATE_TIME);
-                document.getElementById("basketball-match-name").textContent = `${basketballMatch.TEAM_1_SHORT} vs ${basketballMatch.TEAM_2_SHORT}`;
-                document.getElementById("basketball-match-date").textContent = formatDate(basketballMatchTime);
+                document.getElementById("basketball-match-name").innerHTML = `
+                ${basketballMatch.TEAM_1_SHORT} <span style="color: #e90c3f;   font-weight: bold;">vs</span> ${basketballMatch.TEAM_2_SHORT}
+            `;                           
+             document.getElementById("basketball-match-date").textContent = formatDate(basketballMatchTime);
                 startCountdown(basketballMatchTime, "#basketball-match .live");
             }
 
@@ -56553,11 +56555,11 @@ function displayNextMatch(match) {
 
   // Dynamically change the image based on the sport type
   if (match.SPORT_TYPE === "NBA") {
-      nextMatchImage.src = "https://img.freepik.com/free-photo/view-american-football-ball-with-helmet_23-2150784059.jpg?t=st=1734720088~exp=1734723688~hmac=c34ae8e1c1817df582c491b00f0d566b755155ea14ead8b9fcb8f1469eb53502&w=360";
+      nextMatchImage.src = "assets/img/nflhelmet.jpg";
       nextMatchImage.srcset = "https://cdn.prod.website-files.com/63b7f08aa7e15100e972d40a/63bd7e60ff2ef75953e0f83e_Rectangle%208-p-500.webp 500w, https://cdn.prod.website-files.com/63b7f08aa7e15100e972d40a/63bd7e60ff2ef75953e0f83e_Rectangle%208-p-800.webp 800w, https://cdn.prod.website-files.com/63b7f08aa7e15100e972d40a/63bd7e60ff2ef75953e0f83e_Rectangle%208.webp 945w";
   } else if (match.SPORT_TYPE === "NFL") {
-      nextMatchImage.src = " https://img.freepik.com/free-photo/view-american-football-ball-with-helmet_23-2150784059.jpg?t=st=1734720088~exp=1734723688~hmac=c34ae8e1c1817df582c491b00f0d566b755155ea14ead8b9fcb8f1469eb53502&w=360"; // Replace with the NFL image URL
-      nextMatchImage.srcset = "https://img.freepik.com/free-photo/view-american-football-ball-with-helmet_23-2150784059.jpg?t=st=1734720088~exp=1734723688~hmac=c34ae8e1c1817df582c491b00f0d566b755155ea14ead8b9fcb8f1469eb53502&w=360 500w, https://img.freepik.com/free-photo/view-american-football-ball-with-helmet_23-2150784059.jpg?t=st=1734720088~exp=1734723688~hmac=c34ae8e1c1817df582c491b00f0d566b755155ea14ead8b9fcb8f1469eb53502&w=360 800w,  https://img.freepik.com/free-photo/view-american-football-ball-with-helmet_23-2150784059.jpg?t=st=1734720088~exp=1734723688~hmac=c34ae8e1c1817df582c491b00f0d566b755155ea14ead8b9fcb8f1469eb53502&w=360 945w"; // Update the source set accordingly
+      nextMatchImage.src = " assets/img/nflhelmet.jpg"; // Replace with the NFL image URL
+      nextMatchImage.srcset = "assets/img/nflhelmet.jpg 500w, assets/img/nflhelmet.jpg 800w,  assets/img/nflhelmet.jpg 945w"; // Update the source set accordingly
   }
 }
 
@@ -56574,10 +56576,10 @@ function startCountdown(matchTime) {
 
       if (timeDiff <= 0) {
           clearInterval(counterInterval);
-          daysElem.textContent = "0";
-          hoursElem.textContent = "0";
-          minutesElem.textContent = "0";
-          secondsElem.textContent = "0";
+          daysElem.textContent = "00";
+          hoursElem.textContent = "00";
+          minutesElem.textContent = "00";
+          secondsElem.textContent = "00";
           return;
       }
 
