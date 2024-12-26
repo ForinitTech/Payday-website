@@ -1145,7 +1145,7 @@
     white-space: nowrap;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
+
     text-decoration: none;
     position: relative;
   }
@@ -3473,6 +3473,11 @@
     display: none;
   }
   
+  .nav-dropdown-list-menu {
+    background-color: #fff;
+    width: 240px;
+    padding: 15px 20px;
+  }
   .nav-dropdown-list {
     background-color: #fff;
     width: 250px;
