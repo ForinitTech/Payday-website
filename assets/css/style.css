@@ -3465,6 +3465,7 @@
   .nav-dropdown-toggle {
     margin-left: 0;
     margin-right: 0;
+    width: 240px;
     padding-right: 20px;
   }
   
