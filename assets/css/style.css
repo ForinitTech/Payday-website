@@ -3534,29 +3534,44 @@
     transition: opacity .2s;
   }
   
-  .nav-item-title-menu:hover{
-    color: var(--white);
-    background-color: #e90c3f;
-    text-transform: uppercase;
-    font-family: Anton, sans-serif;
-    width: 240px;
-    font-size: 20px;
-    line-height: 1em;
-    transition: opacity .2s;
-  }
-  .nav-item-title-menu{
-    width: 240px;
+  .nav-item-title-menu {
+    margin-left: 0;
+    text-align: left;
+    width: 100%;
     color: var(--white);
     background-color: #e90c3f;
     text-transform: uppercase;
     font-family: Anton, sans-serif;
     font-size: 20px;
     line-height: 1em;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
   }
+  .nav-dropdown1 .nav-item-title-menu {
+    margin-left: 0;
+    text-align: left;
+    display: block;
+  }
+  
+  
+  .nav-item-title-menu:hover {
+    margin-left: 0;
+    text-align: left;
+    color: var(--white);
+    background-color: #e90c3f;
+    text-transform: uppercase;
+    font-family: Anton, sans-serif;
+    width: 100%;
+    font-size: 20px;
+    line-height: 1em;
+    transition: opacity 0.2s;
+  }
+  
   
   
 
+  .nav-item-title-menu:hover {
+    opacity: .7;
+  }
   .nav-item-title:hover {
     opacity: .7;
   }
