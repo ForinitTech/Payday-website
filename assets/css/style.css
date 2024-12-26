@@ -4272,11 +4272,11 @@
   
   .footer-link {
     color: var(--base-dark);
-    padding-top: 10px;
-    padding-bottom: 10px;
     transition: all .3s;
   }
-  
+  .footer-link-delete{
+    font-size: 0.8em;
+  }
   .footer-link:hover {
     color: var(--primary);
   }
@@ -4323,10 +4323,9 @@
   }
   
   .footer-links-wrapper {
-    grid-column-gap: 50px;
+    grid-column-gap: 40px;
     flex-direction: row;
     align-items: flex-start;
-    width: 50%;
     display: flex;
   }
   
@@ -7100,9 +7099,102 @@
   }
 }
 
+
+
+
+
 @media (max-width: 768px) {
   .feature-content-wrapper {
     width: 100%; /* Single column for small screens */
     flex: 1 1 100%;
   }
+}
+
+
+/* Flex container for the more links */
+.more-links {
+  display: flex;
+  flex-direction: row;   
+  gap: 40px;                  /* Add spacing between the links */
+  opacity: 0;
+  display: none;
+  transition: opacity 0.5s ease-in-out;
+  justify-content: flex-start; /* Align to the left */
+  align-items: center;        /* Center items vertically */
+}
+
+/* More button styling */
+.footer-link#more-button {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #e90c3f;
+  display: inline-block;      /* Ensure it behaves like a block-level element */
+  text-align: center;         /* Center the text */
+}
+
+.footer-link#more-button:hover {
+  color: #e90c3f;
+}
+
+/* When the more button is active */
+.footer-link#more-button.active {
+  color: #e90c3f;
+}
+
+/* When the more links become visible */
+.more-links.visible {
+  display: flex;              /* Show links as a flex container */
+  opacity: 1;
+  justify-content: flex-start; /* Align to the left */
+  align-items: center;        /* Center vertically */
+}
+
+/* Add hover effect to each link for better UX */
+.footer-link {
+  text-decoration: none;
+  color: #333;                /* Default color for the links */
+  display: inline-block;      /* Ensure links behave like block-level elements */
+  text-align: center;         /* Center the text inside each link */
+}
+
+.footer-link:hover {
+  color: #e90c3f;
+}
+
+.footer-link-delete:hover{
+  color: #333;
+}
+
+/* Media Query for small screens */
+@media screen and (max-width: 767px) {
+  .footer-links-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;  /* Stack links vertically */
+      grid-column-gap: 40px;      /* Set grid-column-gap */
+      justify-content: center;    /* Center align links */
+  }
+
+  /* Adjust the more links container for small screens */
+  .more-links {
+      flex-direction: column;
+      gap: 0;
+      text-align: center;
+      
+  }
+
+  /* More button styling for mobile */
+  #more-button {
+      text-align: center;
+  }
+
+  /* Style for the links in smaller screens */
+  .footer-link {
+    padding: 10px;
+      font-size: 14px; /* Adjust font size for mobile */
+  }
+  .footer-link-delete{
+    padding: 10px;
+    font-size: 0.7rem;
+  }
+  
 }

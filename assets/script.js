@@ -56604,3 +56604,16 @@ fetchNextMatch();
 
 
 
+document.getElementById('more-button').addEventListener('click', function() {
+  var moreLinks = document.getElementById('more-links');
+  var button = document.getElementById('more-button');
+
+  // Toggle visibility of the more links
+  if (moreLinks.classList.contains('visible')) {
+      moreLinks.classList.remove('visible');
+      button.textContent = "More...";
+  } else {
+      moreLinks.classList.add('visible');
+      button.textContent = "Less...";
+  }
+});
