@@ -56617,10 +56617,6 @@ document.getElementById('more-button').addEventListener('click', function() {
       button.textContent = "Less...";
   }
 });
-document.getElementById('downloadonplaystore').addEventListener('click', function() {
-  fbq('track', 'DownloadApp');
-});
-
-document.getElementById('downloadonappstore').addEventListener('click', function() {
+document.getElementById('downloadbuttonclick').addEventListener('click', function() {
   fbq('track', 'DownloadApp');
 });
